@@ -14,6 +14,10 @@ const blog = defineCollection({
     ogImage: z.string().optional(),
     slug: z.string().optional(),
     draft: z.boolean().default(false),
+    // Optional overrides for the shared end-of-post CTA (src/components/PostCta.astro).
+    // Leave both unset to use the site-wide default heading/note.
+    ctaHeading: z.string().optional(),
+    ctaNote: z.string().optional(),
   }),
 });
 

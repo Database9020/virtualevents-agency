@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import PostThumbnail from '../../components/PostThumbnail.astro';
+import PostCta from '../../components/PostCta.astro';
 import { readingTime, formatDate } from '../../lib/reading-time';
 import { SITE } from '../../lib/site';
 
@@ -22,6 +24,7 @@ interface Props {
 const { post, allPosts } = Astro.props;
 const { Content } = await render(post);
 const time = readingTime(post.body);
+const slug = post.data.slug ?? post.id;
 
 const related = allPosts
   .filter((p) => p.id !== post.id)
@@ -61,6 +64,10 @@ const articleSchema = {
     <div class="container container-narrow">
       <a href="/blog" class="back-link">← Back to blog</a>
 
+      <div class="post-thumb-frame">
+        <PostThumbnail title={post.data.title} tag={post.data.tags[0]} seed={slug} />
+      </div>
+
       <header class="post-header">
         {post.data.tags.length > 0 && (
           <ul class="post-tags">
@@ -80,6 +87,8 @@ const articleSchema = {
       <div class="post-body">
         <Content />
       </div>
+
+      <PostCta heading={post.data.ctaHeading} note={post.data.ctaNote} />
     </div>
   </article>
 
@@ -111,6 +120,13 @@ const articleSchema = {
 
   .back-link:hover {
     color: var(--color-text);
+  }
+
+  .post-thumb-frame {
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    margin-bottom: 2.5rem;
   }
 
   .post-tags {

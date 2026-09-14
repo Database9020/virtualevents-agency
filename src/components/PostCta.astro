@@ -1,0 +1,52 @@
+---
+// Shared end-of-post call to action. Rendered automatically by the blog post
+// template so every article ends the same way, as a real button rather than
+// a plain text link. A post can override the two text fields via frontmatter
+// if a specific plan or angle fits better; otherwise these defaults apply.
+import Button from './Button.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  heading?: string;
+  note?: string;
+}
+
+const {
+  heading = "Want this handled for you?",
+  note = "Book a free, no-obligation strategy call and we'll show you exactly how a done-for-you webinar system would work for your business.",
+} = Astro.props;
+---
+
+<div class="post-cta">
+  <h2>{heading}</h2>
+  <p>{note}</p>
+  <Button href={SITE.strategyCallUrl} icon="phone">Book A Free Strategy Call</Button>
+</div>
+
+<style>
+  .post-cta {
+    margin-top: 3rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .post-cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .post-cta p {
+    color: var(--color-text-muted);
+    max-width: 480px;
+  }
+
+  .post-cta :global(.btn) {
+    margin-top: 0.5rem;
+  }
+</style>

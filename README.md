@@ -61,6 +61,28 @@ Article body in Markdown/MDX...
 Commit and push to `main` — Netlify redeploys automatically. No dashboard,
 no login.
 
+### Content style rules for blog posts
+
+Follow these rules whenever you write or generate a new post, so every
+article matches the voice of the existing ones:
+
+- **No em dashes, en dashes, or hyphens used as sentence-break punctuation.**
+  Don't use a dash to bolt a second thought onto a sentence. Use a comma, a
+  period, or split it into two sentences instead. Hyphens inside genuine
+  compound words are fine ("follow-up", "low-friction", "in-house").
+- **Write out numeric ranges in words**, e.g. "15 to 20 minutes" or
+  "5,000 to 20,000 contacts", not "15–20" or "15-20".
+- **Every post should end by supporting a strategy call booking**, using the
+  shared `PostCta` component (wired automatically into the post template, see
+  `src/components/PostCta.astro`). Don't write anything in the body copy that
+  undercuts that goal, for example arguing against hiring help or against
+  outsourcing. You can override the CTA's heading/note per post with the
+  optional `ctaHeading` / `ctaNote` frontmatter fields; leave them out to use
+  the default.
+- **Write like a person, not an AI summary.** Short, direct sentences.
+  Concrete numbers and examples over generic claims. Avoid the "not just X,
+  but Y" and "it's not about X, it's about Y" constructions.
+
 ## Before you go live
 
 1. In `astro.config.mjs`, confirm `SITE_URL` is `https://virtualevents.agency`
