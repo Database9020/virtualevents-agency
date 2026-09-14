@@ -1,0 +1,71 @@
+---
+import Icon from './Icon.astro';
+import { FAQS } from '../lib/site';
+---
+
+<section class="section faq" id="faq">
+  <div class="container container-narrow">
+    <h2 class="section-heading">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      {FAQS.map((item, i) => (
+        <details class="faq-item" name="faq" open={i === 0}>
+          <summary>
+            <span>{item.question}</span>
+            <Icon name="chevron-down" size={20} class="faq-chevron" />
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .container-narrow {
+    max-width: 780px;
+  }
+
+  .faq-list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--accent-green);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-item p {
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+  }
+</style>

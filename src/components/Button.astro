@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost';
+  icon?: 'phone' | 'arrow-right';
+  iconPosition?: 'left' | 'right';
+  block?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  icon,
+  iconPosition = 'left',
+  block = false,
+  class: className = '',
+} = Astro.props;
+
+const isExternal = href.startsWith('http');
+const classes = [
+  'btn',
+  variant === 'primary' ? 'btn-primary' : 'btn-ghost',
+  block ? 'btn-block' : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<a
+  href={href}
+  class={classes}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+>
+  {icon && iconPosition === 'left' && <Icon name={icon} size={18} />}
+  <span><slot /></span>
+  {icon && iconPosition === 'right' && <Icon name={icon} size={18} />}
+</a>

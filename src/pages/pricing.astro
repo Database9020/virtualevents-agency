@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingTable from '../components/PricingTable.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Button from '../components/Button.astro';
+import { SITE } from '../lib/site';
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Simple, predictable pricing for done-for-you virtual events. Starter, Growth and Pro plans from £1,200/month. No surprises."
+>
+  <section class="section pricing-hero">
+    <div class="container">
+      <h1 class="section-heading">
+        Simple, predictable <span class="gradient-text">pricing.</span> No surprises.
+      </h1>
+      <p class="section-subheading">
+        One partner handling planning, delivery, and content — priced by how many events you want to run each
+        month.
+      </p>
+      <div class="pricing-hero-cta">
+        <Button href={SITE.strategyCallUrl} icon="phone">Book A Free Strategy Call</Button>
+      </div>
+    </div>
+  </section>
+
+  <PricingTable showHeading={false} />
+  <Faq />
+  <FinalCta />
+</BaseLayout>
+
+<style>
+  .pricing-hero {
+    padding-bottom: 0;
+  }
+
+  .pricing-hero-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+</style>

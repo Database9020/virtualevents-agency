@@ -1,0 +1,232 @@
+/* ==========================================================================
+   Design tokens — extracted from the live virtualevents.agency Carrd site.
+   Dark theme, neon mint→yellow accent gradient, Inter typeface, pill buttons.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --color-bg: #121417;
+  --color-bg-elevated: #15171b;
+  --color-surface: #191c21;
+  --color-surface-hover: #1f2329;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+
+  /* Text */
+  --color-text: #f5f6f7;
+  --color-text-muted: #9aa0a6;
+  --color-text-faint: #6b7076;
+
+  /* Accent — gradient runs mint (#00FFA3) to yellow (#FAFF00) at 340deg,
+     matching the buttons and headline highlights on the live site. */
+  --accent-mint: #00ffa3;
+  --accent-yellow: #faff00;
+  --accent-lime: #d9ff00;
+  --accent-green: #8fe24b;
+  --gradient-accent: linear-gradient(340deg, var(--accent-mint) 10%, var(--accent-yellow) 90%);
+  --gradient-accent-soft: linear-gradient(300deg, rgba(0, 255, 148, 0.16) 0%, rgba(217, 255, 0, 0.01) 100%);
+  --gradient-hero-scrim: linear-gradient(180deg, rgba(10, 12, 14, 0.55) 0%, rgba(10, 12, 14, 0.88) 100%);
+
+  /* Radii + shadow */
+  --radius-card: 20px;
+  --radius-pill: 999px;
+  --shadow-card: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+
+  /* Type */
+  --font-sans: 'Inter', -apple-system, 'system-ui', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Layout */
+  --max-width: 1120px;
+  --section-pad-y: 7rem;
+  --section-pad-y-sm: 4rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--section-pad-y) 0;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: var(--section-pad-y-sm) 0;
+  }
+}
+
+.section-heading {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 1rem;
+}
+
+.section-subheading {
+  text-align: center;
+  color: var(--color-text-muted);
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-green);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-pill);
+  padding: 0.9rem 1.75rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--gradient-accent);
+  color: #0a0a0a;
+  box-shadow: 0 8px 24px -8px rgba(0, 255, 163, 0.45);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 28px -8px rgba(0, 255, 163, 0.6);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+}
+
+.btn-ghost:hover {
+  background: var(--color-surface-hover);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Cards */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  background: var(--accent-green);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.9rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 0.75rem 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

@@ -1,0 +1,58 @@
+---
+import { NAV_LINKS, SITE, FOOTER } from '../lib/site';
+import Button from './Button.astro';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-logo">{SITE.name}</p>
+      <p class="footer-copy">{FOOTER.copyright}</p>
+    </div>
+
+    <nav aria-label="Footer">
+      {NAV_LINKS.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+
+    <Button href={SITE.strategyCallUrl} icon="phone">Book a Free Strategy Call</Button>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 3rem 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-copy {
+    color: var(--color-text-faint);
+    font-size: 0.85rem;
+  }
+
+  .footer-inner nav {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .footer-inner nav a:hover {
+    color: var(--color-text);
+  }
+</style>

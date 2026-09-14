@@ -1,0 +1,228 @@
+---
+import Button from './Button.astro';
+import { PRICING_PLANS, PRICING_SECTION } from '../lib/site';
+
+interface Props {
+  showHeading?: boolean;
+}
+
+const { showHeading = true } = Astro.props;
+---
+
+<section class="section pricing" id="pricing">
+  <div class="container">
+    {showHeading && (
+      <>
+        <span class="eyebrow center">{PRICING_SECTION.eyebrow}</span>
+        <h2 class="section-heading">{PRICING_SECTION.heading}</h2>
+      </>
+    )}
+
+    <div class="billing-toggle" role="group" aria-label="Billing period">
+      <span class="toggle-label active" data-period-label="monthly">Monthly</span>
+      <button type="button" id="billing-switch" class="toggle-switch" aria-pressed="false" aria-label="Toggle annual billing">
+        <span class="toggle-knob"></span>
+      </button>
+      <span class="toggle-label" data-period-label="annual">Annual</span>
+      <span class="badge">{PRICING_SECTION.annualDiscountLabel}</span>
+    </div>
+
+    <div class="pricing-grid">
+      {PRICING_PLANS.map((plan) => (
+        <div class={`card pricing-card ${plan.popular ? 'popular' : ''}`}>
+          {plan.popular && <span class="badge popular-badge">Most Popular</span>}
+          <h3 class="plan-name">{plan.name}</h3>
+          <p class="plan-tagline">{plan.tagline}</p>
+
+          <ul class="plan-features">
+            {plan.features.map((feature) => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="check"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <hr />
+
+          <div class="plan-price">
+            <span class="price-monthly" data-price-monthly>£{plan.monthlyPrice.toLocaleString()}</span>
+            <span class="price-annual" data-price-annual hidden>£{plan.annualMonthlyPrice.toLocaleString()}</span>
+            <span class="price-period">per month</span>
+          </div>
+          <p class="plan-savings" data-period-label="annual" hidden>{plan.annualSavingsLabel}</p>
+
+          <Button href={plan.bookingUrl} variant={plan.popular ? 'primary' : 'ghost'} icon="arrow-right" iconPosition="right" block>
+            Book a Strategy Call
+          </Button>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .eyebrow.center {
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .billing-toggle {
+    margin: 2.5rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .toggle-label {
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .toggle-label.active {
+    color: var(--accent-green);
+  }
+
+  .toggle-switch {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s ease;
+  }
+
+  .toggle-switch[aria-pressed='true'] .toggle-knob {
+    transform: translateX(22px);
+    background: var(--accent-green);
+  }
+
+  .pricing-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .pricing-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pricing-card.popular {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 1px var(--accent-green), var(--shadow-card);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .plan-tagline {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    min-height: 2.7em;
+  }
+
+  .plan-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 0.5rem 0;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .plan-features .check {
+    color: var(--accent-green);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  .pricing-card hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 0.25rem 0;
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 2.25rem;
+    font-weight: 800;
+  }
+
+  .price-period {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .plan-savings {
+    color: var(--accent-green);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const switchEl = document.getElementById('billing-switch');
+
+  function setPeriod(annual: boolean) {
+    switchEl?.setAttribute('aria-pressed', String(annual));
+    document.querySelectorAll('[data-period-label="monthly"]').forEach((el) => el.classList.toggle('active', !annual));
+    document.querySelectorAll('[data-period-label="annual"]').forEach((el) => el.classList.toggle('active', annual));
+    document.querySelectorAll('[data-price-monthly]').forEach((el) => el.toggleAttribute('hidden', annual));
+    document.querySelectorAll('[data-price-annual]').forEach((el) => el.toggleAttribute('hidden', !annual));
+    document.querySelectorAll('.plan-savings[data-period-label="annual"]').forEach((el) => el.toggleAttribute('hidden', !annual));
+  }
+
+  switchEl?.addEventListener('click', () => {
+    const isAnnual = switchEl.getAttribute('aria-pressed') === 'true';
+    setPeriod(!isAnnual);
+  });
+</script>

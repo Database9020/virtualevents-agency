@@ -1,0 +1,72 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(sorted, { pageSize: 9 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BaseLayout
+  title="Blog"
+  description="Practical guidance on running B2B webinars, virtual events, and turning them into a repeatable content and pipeline engine."
+>
+  <section class="section blog-index">
+    <div class="container">
+      <h1 class="section-heading">The Virtual Events Blog</h1>
+      <p class="section-subheading">
+        Notes on running webinars that convert, and turning every event into a stream of content — for B2B
+        marketing teams who'd rather not build an events department.
+      </p>
+
+      <div class="blog-grid">
+        {page.data.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+
+      {page.lastPage > 1 && (
+        <nav class="pagination" aria-label="Blog pagination">
+          {page.url.prev && <a href={page.url.prev}>← Newer</a>}
+          <span>Page {page.currentPage} of {page.lastPage}</span>
+          {page.url.next && <a href={page.url.next}>Older →</a>}
+        </nav>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .pagination {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .pagination a:hover {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 900px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

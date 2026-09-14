@@ -1,0 +1,217 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { readingTime, formatDate } from '../../lib/reading-time';
+import { SITE } from '../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.data.slug ?? post.id },
+    props: { post, allPosts: posts },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  allPosts: CollectionEntry<'blog'>[];
+}
+
+const { post, allPosts } = Astro.props;
+const { Content } = await render(post);
+const time = readingTime(post.body);
+
+const related = allPosts
+  .filter((p) => p.id !== post.id)
+  .filter((p) => p.data.tags.some((t) => post.data.tags.includes(t)))
+  .slice(0, 3);
+
+const fallbackRelated = related.length > 0 ? related : allPosts.filter((p) => p.id !== post.id).slice(0, 3);
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: SITE.legalName,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.legalName,
+  },
+  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).toString(),
+};
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+  modifiedTime={(post.data.updatedDate ?? post.data.pubDate).toISOString()}
+  structuredData={articleSchema}
+>
+  <article class="section blog-post">
+    <div class="container container-narrow">
+      <a href="/blog" class="back-link">← Back to blog</a>
+
+      <header class="post-header">
+        {post.data.tags.length > 0 && (
+          <ul class="post-tags">
+            {post.data.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )}
+        <h1>{post.data.title}</h1>
+        <div class="post-meta">
+          <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{time}</span>
+        </div>
+      </header>
+
+      <div class="post-body">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  {fallbackRelated.length > 0 && (
+    <section class="section related">
+      <div class="container">
+        <h2 class="section-heading">Related articles</h2>
+        <div class="related-grid">
+          {fallbackRelated.map((p) => (
+            <BlogCard post={p} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .container-narrow {
+    max-width: 720px;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags li {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent-green);
+    background: rgba(143, 226, 75, 0.1);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .post-header h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+  }
+
+  .post-meta {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    color: var(--color-text-faint);
+    font-size: 0.9rem;
+  }
+
+  .post-body {
+    margin-top: 2.5rem;
+    color: var(--color-text);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .post-body :global(h2) {
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-body :global(h3) {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-body :global(p) {
+    margin-bottom: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-body :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-body :global(ul) {
+    list-style: disc;
+  }
+
+  .post-body :global(ol) {
+    list-style: decimal;
+  }
+
+  .post-body :global(strong) {
+    color: var(--color-text);
+  }
+
+  .post-body :global(a) {
+    color: var(--accent-green);
+    text-decoration: underline;
+  }
+
+  .post-body :global(blockquote) {
+    border-left: 3px solid var(--accent-green);
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 1.5rem 0;
+  }
+
+  .related-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

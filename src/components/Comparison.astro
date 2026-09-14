@@ -1,0 +1,91 @@
+---
+import Icon from './Icon.astro';
+import { COMPARISON_SECTION } from '../lib/site';
+---
+
+<section class="section comparison">
+  <div class="container">
+    <h2 class="section-heading">{COMPARISON_SECTION.heading}</h2>
+    <p class="section-subheading">{COMPARISON_SECTION.subheading}</p>
+
+    <div class="comparison-grid">
+      {COMPARISON_SECTION.columns.map((col) => (
+        <div class={`card comparison-card ${col.negative ? 'negative' : 'positive'}`}>
+          <h3>{col.title}</h3>
+          <ul>
+            {col.items.map((item) => (
+              <li>
+                {col.negative ? (
+                  <span class="mark mark-x">✕</span>
+                ) : (
+                  <Icon name="check" size={16} class="mark mark-check" />
+                )}
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="comparison-summary">
+      {COMPARISON_SECTION.summaryPre} <strong>{COMPARISON_SECTION.summaryPost}</strong>
+    </p>
+  </div>
+</section>
+
+<style>
+  .comparison-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .comparison-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .comparison-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.4rem 0;
+    color: var(--color-text-muted);
+  }
+
+  .comparison-card.positive {
+    border-color: var(--accent-green);
+  }
+
+  .mark {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .mark-x {
+    color: var(--color-text-faint);
+  }
+
+  .mark-check {
+    color: var(--accent-green);
+  }
+
+  .comparison-summary {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+  }
+
+  .comparison-summary strong {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 900px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

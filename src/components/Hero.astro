@@ -1,0 +1,79 @@
+---
+import Button from './Button.astro';
+import { HERO, SITE } from '../lib/site';
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>
+      <span class="gradient-text">{HERO.headingPre} {HERO.headingAccent}</span>{' '}
+      <span>{HERO.headingPost}</span>
+    </h1>
+
+    <p class="hero-sub">{HERO.subheading}</p>
+    <p class="hero-sub hero-sub-secondary">{HERO.subheadingSecondary}</p>
+
+    <div class="hero-cta">
+      <Button href={SITE.strategyCallUrl} icon="phone">{HERO.ctaLabel}</Button>
+      <p class="hero-cta-note">{HERO.ctaNote}</p>
+    </div>
+
+    <p class="hero-stat" set:html={HERO.statLine.replace(/(\d[\d,]*\+?)/g, '<strong>$1</strong>')} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 6rem 0 4rem;
+    background:
+      radial-gradient(60% 50% at 80% 0%, rgba(0, 255, 163, 0.14), transparent 70%),
+      var(--color-bg);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 3.75rem);
+    font-weight: 800;
+  }
+
+  .hero-sub {
+    margin-top: 1.75rem;
+    color: var(--color-text-muted);
+    font-size: 1.15rem;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .hero-sub-secondary {
+    margin-top: 1rem;
+  }
+
+  .hero-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .hero-cta-note {
+    color: var(--color-text-faint);
+    font-size: 0.9rem;
+  }
+
+  .hero-stat {
+    margin-top: 3rem;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  .hero-stat strong {
+    color: var(--color-text);
+  }
+</style>
