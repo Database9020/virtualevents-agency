@@ -5,6 +5,9 @@ const blog = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
+    // Optional shorter title for <title>/OG/Twitter and search snippets, for
+    // posts whose on-page headline runs long. Leave unset to reuse title.
+    seoTitle: z.string().optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
