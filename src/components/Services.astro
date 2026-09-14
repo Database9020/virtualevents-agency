@@ -39,6 +39,10 @@ import { SERVICES, SERVICES_SECTION, SITE } from '../lib/site';
 </section>
 
 <style>
+  .services {
+    padding-bottom: 3rem;
+  }
+
   .eyebrow.center {
     display: block;
     text-align: center;
@@ -114,6 +118,12 @@ import { SERVICES, SERVICES_SECTION, SITE } from '../lib/site';
   @media (max-width: 900px) {
     .services-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .services {
+      padding-bottom: 2rem;
     }
   }
 </style>

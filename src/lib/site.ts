@@ -155,7 +155,7 @@ export const COMPARISON_SECTION = {
     {
       title: 'Hiring In-House',
       negative: true,
-      items: ['£30k–£50k+ salary', 'Time spent hiring and training', 'Ongoing management required'],
+      items: ['£30k to £50k+ salary', 'Time spent hiring and training', 'Ongoing management required'],
     },
     {
       title: 'Freelancers',
