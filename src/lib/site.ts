@@ -103,6 +103,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     features: [
       '1 lead-generating webinar per month',
       'Full setup & operational delivery (you handle promotion)',
+      'Webinar platform and software costs included',
       '5+ content assets',
     ],
     monthlyPrice: 1200,
@@ -117,6 +118,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     features: [
       '2 lead-generating webinars per month',
       'Full setup & operational delivery (you handle promotion)',
+      'Webinar platform and software costs included',
       '15+ content assets',
       'Branded presentation template',
       '12-month webinar roadmap',
@@ -134,6 +136,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     features: [
       '2 lead-generating webinars per month',
       'Full setup & operational delivery (you handle promotion)',
+      'Webinar platform and software costs included',
       'We produce and run the live session end to end',
       'Pre & post webinar email sequences',
       '20+ content assets',
