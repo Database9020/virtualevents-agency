@@ -138,7 +138,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       'Pre & post webinar email sequences',
       '20+ content assets',
       'Branded presentation template',
-      'Speaker suggestions',
+      'Speaker sourcing',
     ],
     monthlyPrice: 2500,
     annualMonthlyPrice: 2000,
