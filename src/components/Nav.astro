@@ -5,9 +5,7 @@ import Button from './Button.astro';
 
 <header class="nav">
   <div class="container nav-inner">
-    <a href="/" class="nav-logo">
-      {SITE.name}
-    </a>
+    <a href="/" class="nav-logo gradient-text">virtualevents.agency</a>
 
     <nav class="nav-links" aria-label="Primary">
       {NAV_LINKS.map((link) => (
@@ -61,8 +59,9 @@ import Button from './Button.astro';
 
   .nav-logo {
     font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
   }
 
   .nav-links {

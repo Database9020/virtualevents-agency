@@ -275,5 +275,5 @@ export const FINAL_CTA_SECTION = {
 };
 
 export const FOOTER = {
-  copyright: `© ${new Date().getFullYear()} Virtual Events. All rights reserved.`,
+  copyright: `© ${new Date().getFullYear()} Virtual Events Agency. All rights reserved.`,
 };
