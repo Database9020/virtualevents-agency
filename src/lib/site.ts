@@ -159,7 +159,7 @@ export const SUMMIT_SECTION = {
     'Speaker sourcing and coordination',
     'Content repurposed across the whole event, not a single session',
   ],
-  proofLine: 'Built on experience running large scale events for 500+ sessions a year and audiences of 300,000+.',
+  proofLine: 'Built on experience running 40+ summits per year and over 300,000 yearly attendances.',
   ctaLabel: 'Enquire Now',
   ctaHref: 'mailto:callum@virtualevents.agency?subject=Summit%20enquiry',
 };
