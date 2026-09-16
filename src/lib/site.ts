@@ -150,6 +150,20 @@ export const PRICING_PLANS: PricingPlan[] = [
   },
 ];
 
+export const SUMMIT_SECTION = {
+  heading: 'Running a Multi-Day Summit?',
+  subheading:
+    'For teams planning something bigger than a monthly webinar, a full virtual or hybrid summit with multiple sessions and speakers. Scoped and priced individually based on length, speaker count, and production needs.',
+  bullets: [
+    'Full production across every session, not just one',
+    'Speaker sourcing and coordination',
+    'Content repurposed across the whole event, not a single session',
+  ],
+  proofLine: 'Built on experience running large scale events for 500+ sessions a year and audiences of 300,000+.',
+  ctaLabel: 'Enquire Now',
+  ctaHref: 'mailto:callum@virtualevents.agency?subject=Summit%20enquiry',
+};
+
 export const COMPARISON_SECTION = {
   heading: "Why Hiring Isn't the Best Option",
   subheading:
@@ -267,6 +281,11 @@ export const FAQS = [
     question: 'What happens on the strategy call?',
     answer:
       "We look at your current setup, your marketing, and how events could fit into it. You'll leave with a clear plan of what this could look like.",
+  },
+  {
+    question: "Why don't summits have a listed price?",
+    answer:
+      "Summits vary too much in scope, days, speakers, production needs, to price with a single number. Get in touch and we'll scope it properly and send a proposal.",
   },
 ];
 

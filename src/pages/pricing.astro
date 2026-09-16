@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingTable from '../components/PricingTable.astro';
+import SummitBox from '../components/SummitBox.astro';
 import Faq from '../components/Faq.astro';
 import FinalCta from '../components/FinalCta.astro';
 import Button from '../components/Button.astro';
@@ -27,6 +28,7 @@ import { SITE } from '../lib/site';
   </section>
 
   <PricingTable showHeading={false} />
+  <SummitBox />
   <Faq />
   <FinalCta />
 </BaseLayout>

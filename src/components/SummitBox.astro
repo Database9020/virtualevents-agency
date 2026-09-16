@@ -1,0 +1,102 @@
+---
+import Button from './Button.astro';
+import { SUMMIT_SECTION } from '../lib/site';
+---
+
+<section class="section summit">
+  <div class="container">
+    <div class="card summit-box">
+      <div class="summit-copy">
+        <h3 class="summit-heading">{SUMMIT_SECTION.heading}</h3>
+        <p class="summit-subheading">{SUMMIT_SECTION.subheading}</p>
+
+        <ul class="summit-bullets">
+          {SUMMIT_SECTION.bullets.map((bullet) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="check"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="summit-proof">{SUMMIT_SECTION.proofLine}</p>
+      </div>
+
+      <div class="summit-cta">
+        <Button href={SUMMIT_SECTION.ctaHref} icon="arrow-right" iconPosition="right">
+          {SUMMIT_SECTION.ctaLabel}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .summit {
+    padding-top: 0;
+  }
+
+  .summit-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    padding: 2.5rem;
+  }
+
+  .summit-heading {
+    font-size: 1.5rem;
+  }
+
+  .summit-subheading {
+    color: var(--color-text-muted);
+    margin-top: 0.75rem;
+    max-width: 60ch;
+  }
+
+  .summit-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1.25rem 0 0;
+  }
+
+  .summit-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .summit-bullets .check {
+    color: var(--accent-green);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  .summit-proof {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin-top: 1.25rem;
+  }
+
+  .summit-cta {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 900px) {
+    .summit-box {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: left;
+    }
+
+    .summit-cta {
+      display: flex;
+    }
+
+    .summit-cta :global(.btn) {
+      width: 100%;
+    }
+  }
+</style>
