@@ -10,7 +10,7 @@ export const SITE = {
   strategyCallUrl: 'https://cal.eu/virtualevents.agency/strategycall',
   defaultTitle: 'Virtual Event System & Agency | Scale Your Events Effortlessly',
   defaultDescription:
-    'Looking for a predictable virtual event system? Our end-to-end management covers everything from tech setup to real-world execution. Simple pricing, no surprises.',
+    'Virtualevents.agency is a webinar production and content repurposing agency that runs done-for-you virtual events for B2B SaaS companies, handling planning, live delivery, and post-event content.',
   shareImage: '/og-image.jpg',
   twitterHandle: '',
 };
@@ -286,6 +286,21 @@ export const FAQS = [
     question: "Why don't summits have a listed price?",
     answer:
       "Summits vary too much in scope, days, speakers, production needs, to price with a single number. Get in touch and we'll scope it properly and send a proposal.",
+  },
+  {
+    question: 'What does a webinar production agency do?',
+    answer:
+      'A webinar production agency plans, sets up, and runs webinars on a company\'s behalf, covering registration pages, platform setup, live technical delivery, and turning each session into follow-up content, so the client\'s team only has to show up and present.',
+  },
+  {
+    question: 'Who is virtualevents.agency for?',
+    answer:
+      'Virtualevents.agency is built for B2B SaaS companies that already have marketing and an audience but want a partner to handle the event side: planning, live delivery, and content, without hiring an in-house events team.',
+  },
+  {
+    question: "What's included in webinar production services?",
+    answer:
+      'Our webinar production services include event strategy, registration page setup, attendance and reminder flows, full live technical delivery and support, and post-event content repurposing into clips, posts, and written content.',
   },
 ];
 

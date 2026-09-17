@@ -1,0 +1,29 @@
+# virtualevents.agency
+
+> Virtualevents.agency is a webinar production and content repurposing agency that runs done-for-you virtual events for B2B SaaS companies, handling planning, live delivery, and post-event content.
+
+Virtualevents.agency plans, sets up, and runs webinars and virtual/hybrid summits on behalf of B2B SaaS companies, then repurposes each event into ongoing content (clips, posts, written content). Clients keep their existing marketing and audience; the agency handles event strategy, registration pages, live technical delivery, and follow-up content, so internal teams don't need to hire an in-house events team.
+
+Pricing is a monthly retainer (Starter, Growth, Pro), scoped by how many events a client wants to run per month. Multi-day summits are scoped and priced individually.
+
+Experience: 500+ events delivered per year (virtual and in-person), 300,000+ virtual event viewers reached, 40+ summits run per year.
+
+## Key pages
+
+- [Home](https://virtualevents.agency/): overview of services (planning & setup, live event delivery, content repurposing), pricing tiers, and FAQ.
+- [Pricing](https://virtualevents.agency/pricing/): Starter/Growth/Pro monthly plans with feature breakdown, multi-day summit enquiries, and pricing FAQ.
+- [Blog](https://virtualevents.agency/blog/): articles on B2B webinar strategy, cadence, content repurposing, and follow-up sequences.
+
+## Blog posts
+
+- [Building a 12-Month Webinar Content Calendar for B2B Marketing Teams](https://virtualevents.agency/blog/12-month-webinar-content-calendar/)
+- [The B2B Webinar Checklist: Every Step We Run Before a Live Session](https://virtualevents.agency/blog/b2b-webinar-checklist/)
+- [How to Run a B2B Webinar That Actually Generates Pipeline](https://virtualevents.agency/blog/b2b-webinar-generate-pipeline/)
+- [Why the Most Visible CEOs in Your Industry Are Running Monthly Webinars](https://virtualevents.agency/blog/ceo-personal-brand-monthly-webinars/)
+- [You're An Expert. So Why Has Nobody Heard Of You?](https://virtualevents.agency/blog/expert-nobody-has-heard-of-you/)
+- [High Attendance, Low Pipeline: Why Your Webinars Aren't Converting](https://virtualevents.agency/blog/high-attendance-low-pipeline-webinar/)
+- [In-House vs Outsourced Webinar Team: What It Actually Costs](https://virtualevents.agency/blog/in-house-vs-outsourced-webinar-team-cost/)
+- [How B2B Founders Are Turning One Hour A Month Into A Full Content Calendar](https://virtualevents.agency/blog/one-hour-a-month-content-calendar/)
+- [How to Repurpose One Webinar Into a Month of Content](https://virtualevents.agency/blog/repurpose-webinar-content/)
+- [How Often Should B2B SaaS Companies Run Webinars?](https://virtualevents.agency/blog/webinar-cadence-guide/)
+- [Webinar Follow-Up Emails That Convert: The Sequences We Use](https://virtualevents.agency/blog/webinar-follow-up-email-sequences/)

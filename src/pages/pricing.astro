@@ -5,12 +5,26 @@ import SummitBox from '../components/SummitBox.astro';
 import Faq from '../components/Faq.astro';
 import FinalCta from '../components/FinalCta.astro';
 import Button from '../components/Button.astro';
-import { SITE } from '../lib/site';
+import { SITE, FAQS } from '../lib/site';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title="Pricing"
   description="Simple, predictable pricing for done-for-you virtual events. Starter, Growth and Pro plans from £1,200/month. No surprises."
+  structuredData={faqSchema}
 >
   <section class="section pricing-hero">
     <div class="container">

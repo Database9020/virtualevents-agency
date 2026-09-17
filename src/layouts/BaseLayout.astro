@@ -30,12 +30,17 @@ const organizationSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'Virtual event production and management',
+  serviceType: ['Webinar Production', 'Virtual Event Management', 'Content Repurposing'],
   provider: {
     '@type': 'Organization',
     name: SITE.legalName,
+    url: SITE.url,
   },
   areaServed: 'Worldwide',
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'B2B SaaS companies',
+  },
   description: SITE.defaultDescription,
 };
 

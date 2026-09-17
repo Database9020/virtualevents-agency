@@ -9,6 +9,7 @@ import { SERVICES, SERVICES_SECTION, SITE } from '../lib/site';
     <span class="eyebrow center">{SERVICES_SECTION.eyebrow}</span>
     <h2 class="section-heading">{SERVICES_SECTION.heading}</h2>
     <p class="section-subheading">{SERVICES_SECTION.subheading}</p>
+    <p class="positioning-statement">{SITE.defaultDescription}</p>
 
     <div class="services-grid">
       {SERVICES.map((service) => (
@@ -47,6 +48,14 @@ import { SERVICES, SERVICES_SECTION, SITE } from '../lib/site';
     display: block;
     text-align: center;
     margin-bottom: 1rem;
+  }
+
+  .positioning-statement {
+    max-width: 640px;
+    margin: 1rem auto 0;
+    text-align: center;
+    color: var(--color-text-faint);
+    font-size: 0.9rem;
   }
 
   .services-grid {
